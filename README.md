@@ -39,6 +39,10 @@ Once the generator is trained, it is easy to gather the data it produces, and tr
 
 ![SineGenerator](Diagrams/SineTest/SineGenerator.png)
 
+### 3) The training
+
+![TrainingDiagram](Diagrams/SineTest/TrainingDiagram.png)
+
 ## C) GANgster
 
 ### 1) The discriminator :
