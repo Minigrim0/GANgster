@@ -1,3 +1,5 @@
 ve/
 .ipynb_checkpoints/
 data/
+MNIST/
+models/
