@@ -60,6 +60,10 @@ Located in our `CustomDataset` class. These images then go through some transfor
 
 ### 1) The discriminator :
 
+![SineDiscriminator](Diagrams/GANgster/GANgsterDiscriminator.png)
+
 ### 2) The generator :
+
+![SineGenerator](Diagrams/GANgster/GANgsterGenerator.png)
 
 ## D) Installation + training
