@@ -12,7 +12,7 @@ There are two main parts in a GAN :
 
 - The discriminator :
 
-The discriminator networks are the most used neural networks in the field of Artificial Intelligence. Those are networks that are trained to recognise some type of data and extract an information out of them. For example, an IA that will classify plants is most likely built with a discriminator network.
+The discriminator networks are the most used neural networks in the field of Artificial Intelligence. Those are networks that are trained to recognise some type of data and extract an information out of them. For example, an IA that will classify plants such as [G.R.O.O.T.](https://github.com/TeamNameBE/G.R.O.O.T.) is most likely built with a discriminator network.
 
 - The generator :
 
@@ -30,6 +30,9 @@ During the training, the output of the discriminator will go through an loss fun
 Once the generator is trained, it is easy to gather the data it produces, and tranform them into useful data. In our first draft, the data will simply be used as x, y coordinates, and should (If the GAN has been correctly trained) resemble a sine wave. In our second case, the output will be used as gray values for a pixel.
 
 ## B) First draft: Generate Sine wave values
+This first draft will be an easy one for two reasons:
+* We can generate an infinite dataset
+* The networks won't be extremely large as the data we're working on are just two digits
 
 ### 1) The discriminator :
 
@@ -44,6 +47,16 @@ Once the generator is trained, it is easy to gather the data it produces, and tr
 ![TrainingDiagram](Diagrams/SineTest/TrainingDiagram.png)
 
 ## C) GANgster
+
+For this part, we'll first need a dataset of mugshots, on which we will train the networks. I found [a good dataset on kaggle](https://www.kaggle.com/kwisatzhaderach/nist-mugshots). From this, we'll need to select only the ones we want, in our case, the pictures taken from the front. To do this, we simply need to iterate through the folders, and take the pictures with an 'F' just before the .png. This is the purpose of this bit of code :
+```python
+for filepath in glob.glob(f"{images_folder}/*/*F.png"):
+    image = PIL.Image.open(filepath)
+    if self.transform is not None:
+        image = self.transform(image)
+    self.df.append((image, os.path.split(filepath)[1].split(".")[0]))
+```
+Located in our `CustomDataset` class. These images then go through some transformations in order to have a 
 
 ### 1) The discriminator :
 
