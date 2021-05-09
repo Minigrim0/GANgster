@@ -2,6 +2,8 @@
 
 A Generative Adversarial Network to create mugshots
 
+![generated gif](Diagrams/progressive_text.gif)
+
 ## A) What is a GAN
 
 A Generative Adversarial Network is a model of machine learning used to generate fake data from a dataset. It can be used in various fields, such as creating images of people who don't exist see [thispersondoesnotexist.com](https://thispersondoesnotexist.com/)
@@ -20,7 +22,6 @@ This is the most important part of the GAN. It will create data from a random no
 
 ### 2) How to train one
 
-
 The way GANs work (most of the time at least) is the following: The _Generator_ is given an array of noise, and processes this array to spit out an array of imformation that it thinks is a valid representation of true data. The _discriminator_ is then fed this data and tries to figure out whether it is true data or false data. The _discriminator_ may be fed data from the dataset as well as data from the _Generator_. The idea behind is to make both the networks compete against each other to get better and better at generating or recognizing fake data.
 
 During the training, the output of the discriminator will go through an loss function, and the result will be used to update both the _discriminator_ neurons and the _generator_ neurons. The _generator_ will therefore be trained to replicate data similar to the dataset, in order to fool the _discriminator_. The diagrams of the first draft may help understanding how the networks work together.
@@ -30,9 +31,11 @@ During the training, the output of the discriminator will go through an loss fun
 Once the generator is trained, it is easy to gather the data it produces, and tranform them into useful data. In our first draft, the data will simply be used as x, y coordinates, and should (If the GAN has been correctly trained) resemble a sine wave. In our second case, the output will be used as gray values for a pixel.
 
 ## B) First draft: Generate Sine wave values
+
 This first draft will be an easy one for two reasons:
-* We can generate an infinite dataset
-* The networks won't be extremely large as the data we're working on are just two digits
+
+- We can generate an infinite dataset
+- The networks won't be extremely large as the data we're working on are just two digits
 
 ### 1) The discriminator :
 
@@ -48,7 +51,8 @@ This first draft will be an easy one for two reasons:
 
 ## C) GANgster
 
-For this part, we'll first need a dataset of mugshots, on which we will train the networks. I found [a good dataset on kaggle](https://www.kaggle.com/kwisatzhaderach/nist-mugshots). From this, we'll need to select only the ones we want, in our case, the pictures taken from the front. To do this, we simply need to iterate through the folders, and take the pictures with an 'F' just before the .png. This is the purpose of this bit of code :
+For this part, we'll first need a dataset of mugshots, on which we will train the networks. I found [a good dataset on kaggle](https://www.kaggle.com/elliotp/idoc-mugshots). From this, we'll need to select only the ones we want, in our case, the pictures taken from the front. To do this, we simply need to iterate through the folders, and take the pictures with an 'F' just before the **.png**. This is the purpose of this bit of code :
+
 ```python
 for filepath in glob.glob(f"{images_folder}/*/*F.png"):
     image = PIL.Image.open(filepath)
@@ -56,7 +60,8 @@ for filepath in glob.glob(f"{images_folder}/*/*F.png"):
         image = self.transform(image)
     self.df.append((image, os.path.split(filepath)[1].split(".")[0]))
 ```
-Located in our `CustomDataset` class. These images then go through some transformations in order to have a 
+
+Located in our `CustomDataset` class. These images then go through some transformations in order to have a
 
 ### 1) The discriminator :
 
